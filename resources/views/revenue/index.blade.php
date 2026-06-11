@@ -1,8 +1,19 @@
-
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-    <h1>Revenue</h1>
+
+<h1>Revenue</h1>
+
+<div class="row mt-4">
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                Total Revenue
+            </div>
+        </div>
+    </div>
+
 </div>
+
 @endsection
