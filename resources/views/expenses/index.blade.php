@@ -1,25 +1,55 @@
 
 @extends('layouts.app')
-
 @section('title', 'Expenses')
-
+@php
+    $buttonEntity = 'gasto';
+@endphp
 @section('content')
 
 <div class="container-fluid py-3">
 
-    {{-- HEADER --}}
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="mb-0">Expenses</h4>
-
-        <button class="btn btn-primary">
-            + Añadir gasto
-        </button>
-    </div>
-
     {{-- CARD TABLE --}}
     <div class="card shadow-sm border-0">
         <div class="card-body">
+            <div class="card mb-3">
+    <div class="card-body">
+        <div class="row g-2 align-items-center">
 
+            {{-- Buscador --}}
+            <div class="col-md-5">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Buscar gasto..."
+                >
+            </div>
+
+            {{-- Categorías --}}
+            <div class="col-md-3">
+                <select class="form-select">
+                    <option selected>Todas las categorías</option>
+                    <option>Alimentación</option>
+                    <option>Transporte</option>
+                    <option>Suscripciones</option>
+                </select>
+            </div>
+
+            {{-- Fecha --}}
+            <div class="col-md-3">
+                <input
+                    type="date"
+                    class="form-control"
+                >
+            </div>
+
+            {{-- Icono calendario --}}
+            <div class="col-md-1 text-center">
+                <i class="fa-solid fa-calendar-days fs-5"></i>
+            </div>
+
+        </div>
+    </div>
+</div>
             <table class="table table-hover table-striped align-middle">
 
                 <thead class="table-light">
@@ -66,7 +96,23 @@
 
             </table>
 
-        </div>
+        </div><div class="d-flex justify-content-center align-items-center mt-3">
+
+    <button class="btn btn-sm btn-light border me-2">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <span class="mx-2">1</span>
+    <span class="mx-2">2</span>
+    <span class="mx-2">3</span>
+    <span class="mx-2">...</span>
+    <span class="mx-2">10</span>
+
+    <button class="btn btn-sm btn-light border ms-2">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+</div>
     </div>
 
 </div>

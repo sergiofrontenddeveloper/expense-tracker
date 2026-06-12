@@ -31,9 +31,9 @@
                     @yield('title', 'Dashboard')
                 </span>
 
-                <div>
-                    Usuario
-                </div>
+           @if(isset($buttonEntity))
+    <x-add-button :entity="$buttonEntity" />
+@endif
             </nav>
 
             {{-- CONTENT --}}

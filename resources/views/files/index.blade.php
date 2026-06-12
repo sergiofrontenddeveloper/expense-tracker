@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Files')
-
+@php
+    $buttonEntity = 'fichero';
+@endphp
 @section('content')
 
 <div class="container-fluid">
