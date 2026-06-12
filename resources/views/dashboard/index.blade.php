@@ -51,6 +51,57 @@
 
     </div>
 
+<div class="container mt-4">
+    <h4>Dashboard</h4>
+
+    <canvas id="expensesChart"></canvas>
 </div>
 
+</div>
+
+</div><div style="width: 600px; margin: 20px auto;">
+    <canvas id="expensesChart"></canvas>
+    <p>TEST DASHBOARD OK</p>
+
+
+</div>
+
+<div style="width: 600px; height: 300px; margin: 20px auto;">
+    <canvas id="expensesChart"></canvas>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const labels = @json($labels ?? []);
+    const data = @json($data ?? []);
+
+    const canvas = document.getElementById('expensesChart');
+
+    if (!canvas) {
+        console.error('Canvas no encontrado');
+        return;
+    }
+
+    if (typeof Chart === 'undefined') {
+        console.error('Chart NO está cargado (problema en Vite/app.js)');
+        return;
+    }
+
+    new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Gastos',
+                data: data,
+                borderWidth: 1
+            }]
+        }
+    });
+});
+</script>
+
 @endsection
+
+
