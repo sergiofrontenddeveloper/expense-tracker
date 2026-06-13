@@ -13,6 +13,38 @@
 </head>
 
 <body>
+    {{-- Header móvil --}}
+<div class="d-lg-none border-bottom bg-white">
+
+    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+
+        {{-- Hamburguesa --}}
+        <button
+            class="btn btn-outline-dark"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobileSidebar">
+
+            ☰
+
+        </button>
+
+        {{-- Logo / Título --}}
+        <span class="fw-bold">
+            Expense Tracker
+        </span>
+
+        {{-- Usuario --}}
+        <a href="{{ route('profile') }}"
+           class="text-dark text-decoration-none">
+
+            <i class="bi bi-person-circle fs-3"></i>
+
+        </a>
+
+    </div>
+
+</div>
 
 <div class="container-fluid vh-100">
 
@@ -22,7 +54,7 @@
         <x-sidebar />
 
         {{-- MAIN --}}
-        <div class="col-10 d-flex flex-column p-0">
+<div class="col-12 col-lg-10 d-flex flex-column p-0">
 
             {{-- NAVBAR --}}
             <nav class="navbar navbar-light bg-light border-bottom px-3">
@@ -45,6 +77,46 @@
     </div>
 
 </div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
 
+    <div class="offcanvas-header">
+        <h5>Expense Tracker</h5>
+
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas">
+        </button>
+    </div>
+
+    <div class="offcanvas-body">
+
+        <nav class="nav flex-column">
+
+            <a href="{{ route('dashboard') }}" class="nav-link">
+                Dashboard
+            </a>
+
+            <a href="{{ route('expenses') }}" class="nav-link">
+                Expenses
+            </a>
+
+            <a href="{{ route('revenue') }}" class="nav-link">
+                Revenue
+            </a>
+
+            <a href="{{ route('files') }}" class="nav-link">
+                Files
+            </a>
+
+            <a href="{{ route('profile') }}" class="nav-link">
+                Profile
+            </a>
+
+        </nav>
+
+    </div>
+
+</div>
 </body>
 </html>

@@ -51,24 +51,68 @@
 
     </div>
 
-<div class="container mt-4">
-    <h4>Dashboard</h4>
+<div class="row g-3">
+    <div class="col-md-6">
+        <canvas id="expensesChart"></canvas>
+    </div>
 
-    <canvas id="expensesChart"></canvas>
+    <div class="col-md-6">
+        <canvas id="lineChart"></canvas>
+    </div>
 </div>
 
 </div>
 
-</div><div style="width: 600px; margin: 20px auto;">
-    <canvas id="expensesChart"></canvas>
-    <p>TEST DASHBOARD OK</p>
-
-
 </div>
 
-<div style="width: 600px; height: 300px; margin: 20px auto;">
-    <canvas id="expensesChart"></canvas>
-</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const ctxLine = document.getElementById('lineChart');
+
+    new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+            datasets: [
+                {
+                    label: 'Gastos',
+                    data: [120, 190, 300, 250, 180, 220],
+                    borderWidth: 2,
+                    tension: 0.3
+                },
+                {
+                    label: 'Ingresos',
+                    data: [200, 250, 320, 310, 280, 350],
+                    borderWidth: 2,
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Ingresos vs Gastos'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+});
+</script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

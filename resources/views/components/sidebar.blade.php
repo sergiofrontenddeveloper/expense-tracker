@@ -1,4 +1,4 @@
-<aside class="col-2 bg-dark text-white p-3">
+<aside class="col-lg-2 bg-dark text-white p-3 d-none d-lg-block min-vh-100">
 
     <h4 class="mb-4">Expense Tracker</h4>
 
