@@ -1,13 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
 
-Route::view('/dashboard', 'dashboard.index')->name('dashboard');
-Route::view('/expenses', 'expenses.index')->name('expenses');
-Route::view('/revenue', 'revenue.index')->name('revenue');
-Route::view('/files', 'files.index')->name('files');
-Route::view('/profile', 'profile.index')->name('profile');
-Route::view('/register', 'auth.register')->name('register');
-Route::view('/', 'auth.login')->name('login');
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExpensesController;
+use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\FilesController;
+use App\Http\Controllers\ProfileController;
+
+Route::get('/', [AuthController::class, 'login'])->name('login');
+
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/expenses', [ExpensesController::class, 'index'])->name('expenses');
+
+Route::get('/revenue', [RevenueController::class, 'index'])->name('revenue');
+
+Route::get('/files', [FilesController::class, 'index'])->name('files');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
