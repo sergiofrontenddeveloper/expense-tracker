@@ -57,15 +57,22 @@
 <div class="col-12 col-lg-10 d-flex flex-column p-0">
 
             {{-- NAVBAR --}}
-            <nav class="navbar navbar-light bg-light border-bottom px-3">
-                <span class="navbar-brand mb-0 h1">
-                    @yield('title', 'Dashboard')
-                </span>
+            @if (!request()->routeIs('dashboard'))
 
-           @if(isset($buttonEntity))
-    <x-add-button :entity="$buttonEntity" />
+    {{-- NAVBAR --}}
+    <nav class="navbar navbar-light bg-light border-bottom px-3">
+
+        <span class="navbar-brand mb-0 h1">
+            @yield('title', 'Dashboard')
+        </span>
+
+        @if(isset($buttonEntity))
+            <x-add-button :entity="$buttonEntity" />
+        @endif
+
+    </nav>
+
 @endif
-            </nav>
 
             {{-- CONTENT --}}
             <main class="p-4 flex-grow-1 overflow-auto">

@@ -3,6 +3,7 @@
     $buttonEntity = 'ingreso';
 @endphp
 @section('content')
+@section('title', 'Revenue')
 
 <div class="container-fluid py-3">
 

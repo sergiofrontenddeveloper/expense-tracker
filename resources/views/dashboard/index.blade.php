@@ -5,7 +5,45 @@
 @section('content')
 
 <div class="container-fluid">
+<div class="d-flex justify-content-end align-items-center gap-5 mb-4">
 
+    {{-- Buscador --}}
+    <div style="width: 350px;">
+
+        <div class="input-group">
+
+            <span class="input-group-text bg-white">
+                <i class="bi bi-search"></i>
+            </span>
+
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Buscar...">
+
+        </div>
+
+    </div>
+
+    {{-- Notificaciones --}}
+    <button class="btn btn-light border">
+        <i class="bi bi-bell"></i>
+    </button>
+
+    {{-- Usuario --}}
+    <button class="btn btn-light border d-flex align-items-center gap-2">
+
+        <i class="bi bi-person-circle fs-4"></i>
+
+        <span>
+            Hola, Usuario
+        </span>
+
+        <i class="bi bi-chevron-down"></i>
+
+    </button>
+
+</div>
     {{-- GRID DE CARDS --}}
     <div class="row g-3">
 
@@ -51,14 +89,24 @@
 
     </div>
 
-<div class="row g-3">
-    <div class="col-md-6">
-        <canvas id="expensesChart"></canvas>
+<div class="row g-3 m-2">
+
+    <div class="col-12 col-lg-6">
+        <div class="card p-3">
+            <div style="height: 350px;">
+                <canvas id="expensesChart"></canvas>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-6">
-        <canvas id="lineChart"></canvas>
+    <div class="col-12 col-lg-6">
+        <div class="card p-3">
+            <div style="height: 350px;">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
     </div>
+
 </div>
 
 </div>
