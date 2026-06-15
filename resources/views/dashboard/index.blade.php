@@ -18,6 +18,7 @@
 
             <input
                 type="text"
+                 id="dashboardSearch"
                 class="form-control"
                 placeholder="Buscar...">
 
@@ -106,7 +107,123 @@
             </div>
         </div>
     </div>
+{{-- TRANSACCIONES RECIENTES --}}
+<div class="row mt-4">
 
+    <div class="col-12">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">
+                        Transacciones recientes
+                    </h5>
+
+                    <a href="{{ route('expenses') }}"
+                       class="btn btn-sm btn-outline-primary">
+                        Ver todas
+                    </a>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle mb-0">
+
+                        <thead>
+
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Categoría</th>
+                                <th>Fecha</th>
+                                <th class="text-end">Importe</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Netflix</td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        Gasto
+                                    </span>
+                                </td>
+                                <td>12/06/2026</td>
+                                <td class="text-end text-danger">
+                                    -12,99 €
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Nómina</td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        Ingreso
+                                    </span>
+                                </td>
+                                <td>10/06/2026</td>
+                                <td class="text-end text-success">
+                                    +2.100,00 €
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Supermercado</td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        Gasto
+                                    </span>
+                                </td>
+                                <td>08/06/2026</td>
+                                <td class="text-end text-danger">
+                                    -74,50 €
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Freelance</td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        Ingreso
+                                    </span>
+                                </td>
+                                <td>05/06/2026</td>
+                                <td class="text-end text-success">
+                                    +450,00 €
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Spotify</td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        Gasto
+                                    </span>
+                                </td>
+                                <td>02/06/2026</td>
+                                <td class="text-end text-danger">
+                                    -10,99 €
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 </div>
 
 </div>
