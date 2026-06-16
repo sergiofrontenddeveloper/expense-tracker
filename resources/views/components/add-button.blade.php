@@ -1,4 +1,4 @@
-<a href="#" class="btn btn-primary">
-    <i class="fas fa-plus me-2"></i>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+    <i class="bi bi-plus-lg me-2"></i>
     Añadir {{ $entity }}
-</a>
+</button>

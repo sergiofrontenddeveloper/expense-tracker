@@ -118,6 +118,11 @@
                 Profile
             </a>
 
+            <form method="POST" action="{{ route('logout') }}" class="mt-2">
+                @csrf
+                <button type="submit" class="nav-link border-0 bg-transparent">Cerrar sesión</button>
+            </form>
+
         </nav>
 
     </div>

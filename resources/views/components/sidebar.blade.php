@@ -29,6 +29,9 @@
             Profile
         </a>
 
+
+        </form>
+
     </nav>
 
 </aside>
