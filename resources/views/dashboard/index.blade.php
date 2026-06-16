@@ -7,91 +7,78 @@
 <div class="container-fluid">
 <div class="d-flex justify-content-end align-items-center gap-5 mb-4">
 
-    {{-- Buscador --}}
     <div style="width: 350px;">
-
         <div class="input-group">
-
             <span class="input-group-text bg-white">
                 <i class="bi bi-search"></i>
             </span>
-
-            <input
-                type="text"
-                 id="dashboardSearch"
-                class="form-control"
-                placeholder="Buscar...">
-
+            <input type="text" id="dashboardSearch" class="form-control" placeholder="Buscar...">
         </div>
-
     </div>
 
-    {{-- Notificaciones --}}
-    <button class="btn btn-light border">
+    <button class="btn btn-light border position-relative">
         <i class="bi bi-bell"></i>
+        @if ($unreadNotifications > 0)
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ $unreadNotifications }}
+            </span>
+        @endif
     </button>
 
-    {{-- Usuario --}}
-    <button class="btn btn-light border d-flex align-items-center gap-2">
-
-        <i class="bi bi-person-circle fs-4"></i>
-
-        <span>
-            Hola, Usuario
-        </span>
-
-        <i class="bi bi-chevron-down"></i>
-
-    </button>
+    <div class="dropdown">
+        <button class="btn btn-light border d-flex align-items-center gap-2 dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle fs-4"></i>
+            <span>Hola, {{ $user->name }}</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{{ route('profile') }}">Perfil</a></li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                </form>
+            </li>
+        </ul>
+    </div>
 
 </div>
-    {{-- GRID DE CARDS --}}
-    <div class="row g-3">
 
-        {{-- CARD 1 --}}
+    <div class="row g-3">
         <div class="col-md-3">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h6 class="text-muted">Total Balance</h6>
-                    <h3>€0.00</h3>
+                    <h3 class="{{ $balance >= 0 ? 'text-success' : 'text-danger' }}">€{{ number_format($balance, 2, ',', '.') }}</h3>
                 </div>
             </div>
         </div>
-
-        {{-- CARD 2 --}}
         <div class="col-md-3">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h6 class="text-muted">Expenses</h6>
-                    <h3>€0.00</h3>
+                    <h3>€{{ number_format($totalExpenses, 2, ',', '.') }}</h3>
                 </div>
             </div>
         </div>
-
-        {{-- CARD 3 --}}
         <div class="col-md-3">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h6 class="text-muted">Revenue</h6>
-                    <h3>€0.00</h3>
+                    <h3>€{{ number_format($totalRevenue, 2, ',', '.') }}</h3>
                 </div>
             </div>
         </div>
-
-        {{-- CARD 4 --}}
         <div class="col-md-3">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h6 class="text-muted">Savings</h6>
-                    <h3>€0.00</h3>
+                    <h3>€{{ number_format($savings, 2, ',', '.') }}</h3>
                 </div>
             </div>
         </div>
-
     </div>
 
 <div class="row g-3 m-2">
-
     <div class="col-12 col-lg-6">
         <div class="card p-3">
             <div style="height: 350px;">
@@ -99,7 +86,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-12 col-lg-6">
         <div class="card p-3">
             <div style="height: 350px;">
@@ -107,210 +93,107 @@
             </div>
         </div>
     </div>
-{{-- TRANSACCIONES RECIENTES --}}
+
 <div class="row mt-4">
-
     <div class="col-12">
-
         <div class="card shadow-sm">
-
             <div class="card-body">
-
                 <div class="d-flex justify-content-between align-items-center mb-3">
-
-                    <h5 class="mb-0">
-                        Transacciones recientes
-                    </h5>
-
-                    <a href="{{ route('expenses') }}"
-                       class="btn btn-sm btn-outline-primary">
-                        Ver todas
-                    </a>
-
+                    <h5 class="mb-0">Transacciones recientes</h5>
+                    <a href="{{ route('expenses') }}" class="btn btn-sm btn-outline-primary">Ver todas</a>
                 </div>
-
                 <div class="table-responsive">
-
-                    <table class="table align-middle mb-0">
-
+                    <table class="table align-middle mb-0" id="transactionsTable">
                         <thead>
-
                             <tr>
                                 <th>Concepto</th>
                                 <th>Categoría</th>
                                 <th>Fecha</th>
                                 <th class="text-end">Importe</th>
                             </tr>
-
                         </thead>
-
                         <tbody>
-
-                            <tr>
-                                <td>Netflix</td>
-                                <td>
-                                    <span class="badge bg-danger">
-                                        Gasto
-                                    </span>
-                                </td>
-                                <td>12/06/2026</td>
-                                <td class="text-end text-danger">
-                                    -12,99 €
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Nómina</td>
-                                <td>
-                                    <span class="badge bg-success">
-                                        Ingreso
-                                    </span>
-                                </td>
-                                <td>10/06/2026</td>
-                                <td class="text-end text-success">
-                                    +2.100,00 €
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Supermercado</td>
-                                <td>
-                                    <span class="badge bg-danger">
-                                        Gasto
-                                    </span>
-                                </td>
-                                <td>08/06/2026</td>
-                                <td class="text-end text-danger">
-                                    -74,50 €
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Freelance</td>
-                                <td>
-                                    <span class="badge bg-success">
-                                        Ingreso
-                                    </span>
-                                </td>
-                                <td>05/06/2026</td>
-                                <td class="text-end text-success">
-                                    +450,00 €
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Spotify</td>
-                                <td>
-                                    <span class="badge bg-danger">
-                                        Gasto
-                                    </span>
-                                </td>
-                                <td>02/06/2026</td>
-                                <td class="text-end text-danger">
-                                    -10,99 €
-                                </td>
-                            </tr>
-
+                            @forelse ($recentTransactions as $transaction)
+                                <tr>
+                                    <td>{{ $transaction['description'] }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ $transaction['type'] === 'expense' ? 'danger' : 'success' }}">
+                                            {{ $transaction['type'] === 'expense' ? 'Gasto' : 'Ingreso' }}
+                                        </span>
+                                    </td>
+                                    <td>{{ $transaction['date']->format('d/m/Y') }}</td>
+                                    <td class="text-end text-{{ $transaction['type'] === 'expense' ? 'danger' : 'success' }}">
+                                        {{ $transaction['type'] === 'expense' ? '-' : '+' }}{{ number_format($transaction['amount'], 2, ',', '.') }} €
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">No hay transacciones recientes.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
-
                     </table>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 </div>
 
 </div>
 
 </div>
-
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const labels = @json($labels);
+    const expenseData = @json($expenseData);
+    const revenueData = @json($revenueData);
 
-    const ctxLine = document.getElementById('lineChart');
-
-    new Chart(ctxLine, {
+    new Chart(document.getElementById('lineChart'), {
         type: 'line',
         data: {
-            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+            labels: labels,
             datasets: [
-                {
-                    label: 'Gastos',
-                    data: [120, 190, 300, 250, 180, 220],
-                    borderWidth: 2,
-                    tension: 0.3
-                },
-                {
-                    label: 'Ingresos',
-                    data: [200, 250, 320, 310, 280, 350],
-                    borderWidth: 2,
-                    tension: 0.3
-                }
+                { label: 'Gastos', data: expenseData, borderWidth: 2, tension: 0.3 },
+                { label: 'Ingresos', data: revenueData, borderWidth: 2, tension: 0.3 }
             ]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    position: 'top'
-                },
-                title: {
-                    display: true,
-                    text: 'Ingresos vs Gastos'
-                }
+                legend: { position: 'top' },
+                title: { display: true, text: 'Ingresos vs Gastos' }
             },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
+            scales: { y: { beginAtZero: true } }
         }
     });
 
-});
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    const labels = @json($labels ?? []);
-    const data = @json($data ?? []);
-
-    const canvas = document.getElementById('expensesChart');
-
-    if (!canvas) {
-        console.error('Canvas no encontrado');
-        return;
-    }
-
-    if (typeof Chart === 'undefined') {
-        console.error('Chart NO está cargado (problema en Vite/app.js)');
-        return;
-    }
-
-    new Chart(canvas, {
+    new Chart(document.getElementById('expensesChart'), {
         type: 'bar',
         data: {
             labels: labels,
-            datasets: [{
-                label: 'Gastos',
-                data: data,
-                borderWidth: 1
-            }]
+            datasets: [{ label: 'Gastos', data: expenseData, borderWidth: 1 }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: 'Gastos mensuales' } },
+            scales: { y: { beginAtZero: true } }
         }
+    });
+
+    const searchInput = document.getElementById('dashboardSearch');
+    const rows = document.querySelectorAll('#transactionsTable tbody tr');
+
+    searchInput?.addEventListener('input', function () {
+        const term = this.value.toLowerCase();
+        rows.forEach(row => {
+            row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+        });
     });
 });
 </script>
 
 @endsection
-
-
