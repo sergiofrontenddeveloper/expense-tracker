@@ -9,13 +9,31 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('files', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+
+public function up(): void
+{
+    Schema::create('files', function (Blueprint $table) {
+
+        $table->id();
+
+        $table->foreignId('user_id')
+              ->constrained()
+              ->cascadeOnDelete();
+
+        $table->string('filename');
+
+        $table->string('original_name');
+
+        $table->string('file_path');
+
+        $table->string('mime_type');
+
+        $table->unsignedBigInteger('size');
+
+        $table->timestamps();
+
+    });
+}
 
     /**
      * Reverse the migrations.
