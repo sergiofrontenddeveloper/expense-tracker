@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthController; 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -36,4 +37,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // 🚨 NUEVAS RUTAS DE NOTIFICACIONES Y PRESUPUESTO INTEGRADAS AQUÍ
+    Route::post('/user/update-limit', [NotificationController::class, 'updateLimit'])->name('user.updateLimit');
+    Route::get('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::get('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 });
