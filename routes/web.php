@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AuthController; 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ExpenseExportController; // Importamos el controlador de exportación
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/expenses', [ExpensesController::class, 'index'])->name('expenses');
     Route::post('/expenses', [ExpensesController::class, 'store'])->name('expenses.store');
     Route::put('/expenses/{expense}', [ExpensesController::class, 'update'])->name('expenses.update');
@@ -34,6 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/files', [FilesController::class, 'store'])->name('files.store');
     Route::get('/files/{file}/download', [FilesController::class, 'download'])->name('files.download');
     Route::delete('/files/{file}', [FilesController::class, 'destroy'])->name('files.destroy');
+
+    // 📊 Ruta para descargar el archivo CSV de los gastos de un mes concreto
+    Route::get('/exportar-gastos/{year}/{month}', [ExpenseExportController::class, 'exportMonth'])
+        ->name('expenses.export');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

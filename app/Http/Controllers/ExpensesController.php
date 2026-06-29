@@ -116,3 +116,4 @@ class ExpensesController extends Controller
         return redirect()->route('expenses')->with('success', 'Gasto eliminado correctamente.');
     }
 }
+

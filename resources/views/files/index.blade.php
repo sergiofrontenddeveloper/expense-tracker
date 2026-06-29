@@ -83,7 +83,15 @@
         </div>
     </div>
 </div>
+<div class="card p-4">
+    <h3>Descargar Gastos del Mes</h3>
+    <p>Exporta tus datos en formato CSV compatible con Excel.</p>
 
+    <!-- Ejemplo para descargar el mes actual (Junio 2026) -->
+    <a href="{{ route('expenses.export', ['year' => 2026, 'month' => 6]) }}" class="btn btn-success">
+        📊 Descargar Gastos de Junio 2026
+    </a>
+</div>
 <script>
 document.getElementById('fileInput')?.addEventListener('change', function () {
     if (this.files.length) {
