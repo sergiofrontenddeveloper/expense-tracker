@@ -148,3 +148,23 @@ MAIL_ENCRYPTION=tls
 
 # Dirección de destino donde se enviarán los reportes y copias de seguridad
 REPORT_EMAIL_DESTINATION="sergio@ejemplo.com"
+
+
+## 🧪 Pruebas Automatizadas (Testing)
+
+El proyecto cuenta con una suite de pruebas automatizadas de integración y características (*Feature Tests*) desarrolladas bajo el ecosistema nativo de **PHPUnit** para garantizar la estabilidad de las reglas de negocio, la seguridad de las rutas y la integridad de las exportaciones de datos ante futuras refactorizaciones.
+
+---
+
+### ⚙️ Configuración del Entorno de Pruebas
+
+Para garantizar que los tests no alteren, ensucien ni eliminen los registros reales de la aplicación en desarrollo, la suite está configurada para inicializar una base de datos **SQLite aislada en memoria RAM (`:memory:`)**, la cual se genera y destruye automáticamente en cada ejecución.
+
+Las variables críticas se encuentran centralizadas en el archivo `phpunit.xml`:
+```xml
+<env name="DB_CONNECTION" value="sqlite"/>
+<env name="DB_DATABASE" value=":memory:"/>
+
+Comando para ejecutar la prueba
+php artisan test
+
