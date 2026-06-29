@@ -1,3 +1,18 @@
+## 📐 Planificación y Arquitectura del Proyecto
+
+Antes de iniciar la fase de desarrollo, se realizó una etapa de análisis y diseño para definir el flujo de los datos y la experiencia de usuario en el panel.
+
+### 🔹 Diagrama de Flujo y Entidad-Relación
+Este diagrama define cómo interactúan los controladores de Gastos e Ingresos, y el comportamiento de los middlewares de autenticación (`auth` y `guest`):
+
+![Diagrama de Arquitectura](./design/diagrama-arquitectura.png)
+
+### 🔹 Wireframe de la Interfaz (UX/UI)
+Diseño previo en baja fidelidad utilizado para estructurar de manera limpia el panel principal y la sección de gestión de archivos (`/files`), optimizando la simetría y usabilidad de los componentes:
+
+![Wireframe del Panel](design/Diagrama-y-wareframe.png)
+
+
 # Expense Tracker 💰
 
 ¡Bienvenido a **Expense Tracker**! Una aplicación web full-stack diseñada para la gestión de finanzas personales, control de ingresos y gastos, y monitorización de presupuestos mensuales en tiempo real.
